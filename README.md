@@ -14,6 +14,6 @@ docker-compose up
 
 in a separate terminal;
 run:
-docker exec -it elixirdev /bin/bash
+docker exec -it elixirdev /bin/sh
 
 ``

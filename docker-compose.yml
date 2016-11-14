@@ -1,21 +1,24 @@
-postgres:
-  image: postgres
-  environment:
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=postgres
-  ports:
-    - "5555:5432"
-  expose:
-    - "5432"
+version: '2'
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
 
-elixir:
-  container_name: elixirdev
-  build: .
-  dockerfile: Dockerfile
-  volumes:
-    - c:/source/privat/testing/elixir:/elixir
-  links:
-    - postgres
-  stdin_open: true
-  ports:
-    - "4000:4000"
+  elixir:
+    container_name: elixirdev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - c:/dev/elixir:/elixir
+    links:
+      - postgres
+    stdin_open: true
+    ports:
+      - "4000:4000"
